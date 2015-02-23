@@ -1,0 +1,56 @@
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+
+public class gpa
+{
+  static int NUMB = 5;
+  
+  public static void main (String[] args) throws FileNotFoundException
+    {
+
+        double GPA = 0,  
+               fSum = 0, 
+               mSum = 0;
+        int    mNum = 0, 
+               fNum = 0;
+        char letterCode;
+//scanner reads in the input.txt and prints the new file to output.txt
+        Scanner inFile = new Scanner(new FileReader("input.txt")); 
+        PrintWriter outFile = new PrintWriter("output.txt"); 
+// loop reads in information on the input file       
+        while (inFile.hasNext())
+        {  
+          letterCode = inFile.next().charAt(0);                         
+//if the code is 'm' it will be added to the male sum and if 'f' it will be added to the female sum        
+          switch(letterCode)
+          {
+            case 'm': 
+               GPA = inFile.nextDouble();
+               mSum += GPA;
+               mNum++;
+               outFile.printf(letterCode + "%5.2f %n", GPA);
+             break;
+            case 'f': 
+               GPA = inFile.nextDouble();
+               fSum += GPA;
+               fNum++;
+               outFile.printf(letterCode + "%5.2f %n", GPA);
+             break;
+          }  
+         } 
+
+        outFile.println();
+        outFile.printf("Sum female GPA = %5.2f %n", fSum);   
+        outFile.printf("Sum male GPA = %5.2f %n", mSum);
+        outFile.println("Female count = " + fNum);
+        outFile.println("Male count = " + mNum);
+        outFile.printf("Average female GPA =%5.2f %n", (fSum / fNum));
+        outFile.printf("Average male GPA =%5.2f %n", (mSum / mNum));
+      
+        
+        inFile.close();
+        outFile.close();                          
+   }
+}
+
