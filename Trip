@@ -1,0 +1,51 @@
+//this import is necessary to use the rounding function later on in the program//
+import java.lang.*;
+
+/*This program utilizes a given distance, speed, and departure time, and then returns the time it will take to travel that distance, as well as what time the destination will be reached*/
+public class Trip{
+  
+//static variables will not be changed by the program// 
+  static final double HOURS_PER_DAY = 24;
+  static final double MINUTES_PER_HOUR = 60;  
+ 
+  public static void main(String args[])
+    
+  {  
+//Variables must be established before they can be entered by the user//
+    double distance = 615.3;    
+    double speed = 58.6;
+    double departureTimeHH = 15;
+    double departureTimeMM = 45;
+    double totalTime;
+    double totalHours;
+    double totalMinutes;
+    double maxMinutes;
+
+    System.out.println("Distance to be traveled (miles): " + distance);                      
+    System.out.println("Speed of travel (mph): " + speed);
+    System.out.println("Departure time (hh mm): " + Math.round(departureTimeHH) + " " + Math.round(departureTimeMM));
+    System.out.println();
+    System.out.println("Distance: " + distance + " miles");
+    System.out.println("Speed: " + speed + " mph");
+    System.out.println("Departure time: " + Math.round(departureTimeHH) + " : " + Math.round(departureTimeMM));
+ 
+    totalTime = distance/speed;
+//converts the total time into a number the program can change more easily//    
+    totalTime = totalTime * MINUTES_PER_HOUR;
+//finds the remainder of minutes after having been divided by MINUTES_PER_HOUR//        
+    totalMinutes = totalTime % MINUTES_PER_HOUR;
+   
+    totalHours = totalTime / MINUTES_PER_HOUR;
+    
+    System.out.println("Travel time: " + Math.round(totalHours) + " : " + Math.round(totalMinutes));
+    
+//adds depature time and total time for minutes and then takes the remaining number after having been divided by MINUTES_PER_HOUR//    
+    totalMinutes = ((departureTimeMM + totalMinutes) % MINUTES_PER_HOUR);
+    
+//adds depature time and total time for hours//        
+    totalHours = ((departureTimeHH + totalHours) % HOURS_PER_DAY);
+    
+    System.out.println("Arrival time: " + Math.round(totalHours) + " : " + Math.round(totalMinutes));
+                                         
+  }
+}
