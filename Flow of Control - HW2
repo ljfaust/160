@@ -1,0 +1,74 @@
+/*This program evaluates interest on different account types
+ * and then calculates the accounts new balance*/
+import java.util.*;
+
+public class FlowOfControl{
+  
+
+  static Scanner console = new Scanner(System.in);
+  
+   static final double cInterest = 0.04;
+   static final double cServiceCharge = 25.00;
+   static final double sAvgInterest = 0.05;
+   static final double sMaxInterest = 0.03;
+   static final double sServiceCharge = 10.00;
+   static final double sAmount = 5000;
+  public static void main(String args[])
+   
+ { 
+   
+  int accountNumber;
+  char accountType;
+  
+  double minimumBalance, currentBalance, beginningBalance = 0;
+  
+  System.out.println("Enter the account number: ");
+  accountNumber = console.nextInt();
+  
+  System.out.println("Enter the account type: ");
+  accountType = console.next().charAt(0);
+  
+  System.out.println("Enter the minimum balance: ");
+  minimumBalance = console.nextInt();
+  
+  System.out.println("Enter the current balance: ");
+  currentBalance = console.nextInt();
+  
+  beginningBalance = currentBalance + beginningBalance;
+  
+  
+//Checking   
+  if ((accountType == 'c') || (accountType == 'C'))                          
+   {   
+    if (currentBalance >= minimumBalance)
+     {
+      if (currentBalance >= minimumBalance + sAmount)
+      {
+        currentBalance = currentBalance + (currentBalance * sAvgInterest);
+      }
+      else
+        currentBalance = currentBalance + (currentBalance * sMaxInterest);
+     }
+    else
+      currentBalance = currentBalance - cServiceCharge;
+   }
+   
+//Saving       
+   if ((accountType == 's') || (accountType == 'S')) 
+   {  
+    if (currentBalance >= minimumBalance) 
+    {
+     currentBalance = currentBalance + (currentBalance * cInterest);   
+    }
+    else
+      currentBalance = currentBalance - sServiceCharge;
+    }   
+   
+  System.out.println("Account number: " + accountNumber);
+  System.out.println("Account type: " + accountType); 
+  System.out.println("Beginning Balance: $" + String.format("%5.2f",beginningBalance));
+  System.out.println("New Balance: $" + String.format("%5.2f",currentBalance)); 
+   
+    }
+
+}
