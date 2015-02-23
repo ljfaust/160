@@ -1,0 +1,77 @@
+/*This program takes in the name of the movie,
+ * price of an adult ticket,
+ * price of a child ticket,
+ * number of adult tickets sold,
+ * number of child tickets sold,
+ * percentage of the donate,
+ * and calculates the gross earnings from the movie theater, 
+ *the amount to be donated, and finally the net earnings*/ 
+
+import java.io.*;
+import java.util.*;
+import javax.swing.JOptionPane;
+
+public class MovieTicketSale2
+{  
+  
+  public static void main (String[] args) 
+    {
+      
+        double adultTP, childTP;
+        double adultTS, childTS;
+        double percentDonated;
+        double amountDonated;
+        double gross;
+        String movieName;
+        String outputStr;            
+//gets the information from the user//        
+     outputStr =
+         JOptionPane.showInputDialog("Enter the movie name: "); 
+
+     movieName = String.format(outputStr);              
+ 
+     outputStr =
+         JOptionPane.showInputDialog("Enter the price of an adult ticket: "); 
+
+     adultTP = Double.parseDouble(outputStr); 
+     
+     outputStr =
+         JOptionPane.showInputDialog("Enter the price of a child ticket: "); 
+
+     childTP = Double.parseDouble(outputStr);   
+     
+     outputStr =
+         JOptionPane.showInputDialog("Enter the number of adult tickets sold: "); 
+
+     adultTS = Double.parseDouble(outputStr);   
+     
+     outputStr =
+         JOptionPane.showInputDialog("Enter the number of child tickets sold: "); 
+
+     childTS = Double.parseDouble(outputStr); 
+     
+     outputStr =
+         JOptionPane.showInputDialog("Enter the percentage of the donation: "); 
+
+     percentDonated = Double.parseDouble(outputStr);   
+     
+//calculations of gross and amount donated done before output//     
+         gross = (adultTP*adultTS) + (childTP*childTS);
+         amountDonated = gross/percentDonated;
+         
+//final calculations are made and the output is returned to the user//          
+     outputStr = "Movie Name: " + movieName + "\n" +
+                 "Number of Tickets Sold: " + String.format("%5.0f", (adultTS+childTS)) + "\n" +
+                 "Gross Amount: $" + String.format("%5.2f", (gross)) + "\n" +
+                 "Percentage of the Gross Amount Donated: " + String.format("%5.2f%%", (percentDonated)) + "\n" +
+                 "Amount Doanted: $" + String.format("%5.2f", (amountDonated)) + "\n" +
+                 "Net Sale: $" + String.format("%5.2f", (gross-amountDonated));      
+
+     JOptionPane.showMessageDialog(null, outputStr, "Theater Sales Data",
+                        JOptionPane.INFORMATION_MESSAGE);   
+
+     System.exit(0);                       
+   }
+}
+
+
