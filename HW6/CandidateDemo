@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.*;
+
+public class CandidateDemo
+{
+
+  public static void main(String[] args) throws FileNotFoundException
+  {
+    Scanner inFile = new Scanner(new FileReader("candidates.txt")); 
+    PrintWriter outFile = new PrintWriter("output.txt"); 
+                  
+     Candidate[] candidates = new Candidate[5];  
+
+     initArray(candidates, inFile);
+
+     printArray(candidates, inFile, outFile);
+     
+    outFile.close();          
+    inFile.close();   
+  }
+  
+
+  public static void initArray(Candidate[] candidates, Scanner inFile)
+  {
+     int index; 
+     
+     for (index = 0; index < candidates.length; index++)
+        candidates[index] = new Candidate(inFile.next(), inFile.nextInt());  
+  }
+  
+    
+  public static void printArray(Candidate[] candidates, Scanner inFile, PrintWriter outFile)
+  {
+     int index;
+     int winner;
+       outFile.println("Name" + "\t\t" + "Votes Received" + "\t\t" + "% of Total Votes");
+        
+     for (index = 0; index < candidates.length; index++)
+      {outFile.printf(candidates[index].getName() + "   \t\t" + candidates[index].getVotes() + "\t\t"); 
+       outFile.printf("   %.2f %n",((double)(candidates[index].getVotes())/(double)(sumArray(candidates,inFile)))*100);
+      }
+     
+     outFile.println();  
+     winner = indexLargestElement(candidates, inFile);
+     outFile.println("The winner of the election is " + candidates[winner].getName() + ".");
+
+  } 
+  
+//Methods   
+  public static int sumArray(Candidate[] candidates, Scanner inFile)
+  {
+      int index;
+      int sum = 0;
+      for (index = 0; index < candidates.length; index++)
+         sum = sum + candidates[index].getVotes();    
+      return sum;
+  }
+  
+
+  public static int indexLargestElement(Candidate[] candidates, Scanner inFile)
+  {
+      int index;
+      int maxIndex = 0; 
+      for (index = 1; index < candidates.length; index++)
+         if (candidates[maxIndex].getVotes() < candidates[index].getVotes())
+             maxIndex = index;
+      return maxIndex;
+    }
+
+}
