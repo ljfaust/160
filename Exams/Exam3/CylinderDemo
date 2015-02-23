@@ -1,0 +1,199 @@
+import java.io.*;
+import java.util.*;
+
+public class CylinderDemo
+{
+  static Scanner console = new Scanner(System.in);
+
+  public static void main(String[] args) throws FileNotFoundException
+  {
+    int answer, N, x;
+    String item;
+
+    N = getNumber();
+                  
+    ArrayList<Cylinder> cylinder = new ArrayList<Cylinder>(N); 
+     
+    fillIn(cylinder, N);
+     
+   do
+   {
+     System.out.println("Choose among the following actions:");
+     System.out.println("1: Decide which cylinder has the largest surface area.");
+     System.out.println("2: Decide which cylinder has the smallest volume");
+     System.out.println("3: Count the number of equal cylinders");
+     System.out.println("4: Print all cylinders");
+     System.out.println("5: Copy last cylinder to a given location.");
+     System.out.println("9: To end the program."); 
+     System.out.println("Enter your choice: ");
+     
+     answer = console.nextInt();  
+     
+     switch(answer)
+          {
+            case 1: 
+               largestSurfaceArea(cylinder, N);
+             break;
+            case 2: 
+               smallestVolume(cylinder, N);               
+             break;
+            case 3: 
+               numberOfEqualCylinders(cylinder, N);
+             break; 
+            case 4: 
+               print(cylinder, N);
+             break;
+            case 5:
+               copyLastCylinder(cylinder);
+          }  
+ 
+    }while (answer != 9);    
+    
+    System.out.println("Bye");
+  
+  }
+  
+//Get Number  
+   public static int getNumber()
+   {
+     int x = 0;
+     boolean done = false;
+        do
+        {
+            System.out.println("Enter the number: ");    
+            try
+            {
+                x = console.nextInt();
+
+                if(x > 9)
+                  throw new Exception("The number cannot be greater than 9");
+                if(x < 1)
+                  throw new Exception("The number cannot be negative");
+
+                done = true;
+            }
+            catch(Exception e)
+            {
+                System.out.println("\nException " + e);
+            }
+
+        } while (!done);
+
+        return x;
+    }       
+
+//FILL ARRAY 
+ public static void fillIn(ArrayList<Cylinder> list, int N) 
+  {
+      int index;
+      double xvalue, yvalue, radius, height;
+    
+      for (index = 0; index < N; index++)
+      { 
+        System.out.println("Enter xValue, yValue, radius and height for #" + index + " cylinder:");
+        xvalue = console.nextDouble(); 
+        yvalue = console.nextDouble();  
+        radius = console.nextDouble();  
+        height = console.nextDouble();  
+
+        
+       list.add(index, new Cylinder(xvalue, yvalue, radius, height));
+      }
+  }
+ 
+//LARGEST SURFACE AREA
+  public static void largestSurfaceArea(ArrayList<Cylinder> list, int N)
+   {
+     int index = -1, i=-1;
+     int max = 0;
+     
+     for (index = 0; index < N; index++)
+     {
+       if (max < calculateSurfaceArea((list.get(index))))
+       {
+         max = calculateSurfaceArea((list.get(index)));
+         i = index;
+       }
+     }
+     
+     System.out.println("Cylinder #" + i + " has the largest surface area " + calculateSurfaceArea((list.get(i))));
+   }
+  
+//SMALLEST VOLUME
+  public static void smallestVolume(ArrayList<Cylinder> list, int N)
+   {
+     int index = -1, i=-1;
+     int min = 0;
+     
+     for (index = 0; index < n; index++)
+     {
+       if (min > calculateVolume((list.get(index))))
+       {
+         min = calculateVolume((list.get(index)));
+         i = index;
+       }
+     }
+     
+     System.out.println("Cylinder #" + i + " has the smallest volume " + calculateVolume((list.get(i))));
+   }
+  
+//COUNTEQUAL
+  public static void numberOfEqualCylinders(ArrayList<Cylinder> list, int N)
+  {
+    int index, x;
+    boolean flag = false;
+    
+    for (index = 0; index < list.size(); index++)  
+    {
+      if (((Cylinder)list.get(index)).equals((Cylinder)list.get(index+1))) 
+      {
+        x++;
+        flag = true;
+      }
+    }
+      System.out.println(x + " Cylinders are equal");
+    if (!flag)
+      System.out.println("No cylinders are equal");
+  }
+  
+//COPY  
+  public static void copyLastCylinder(ArrayList<Cylinder> list)
+  { 
+    System.out.println("Enter the number");
+    z = console.nextInt(); 
+    Cylinder temp = new Cylinder();
+    temp = (Clock)list.get(z);
+    
+    for (int i=z; i > 0; i--)
+      list.set(i, list.get(z));
+    list.set(0, temp);
+    
+    System.out.println("Last cylinder is now cylinder # " + z);
+    
+  }
+  
+//PRINT ARRAYLIST    
+ public static void print(ArrayList<Cylinder> list, int N)
+  {
+     int index;
+        
+     for (index = 0; index < N; index++)
+       
+      {System.out.println("Cylinder #" + index + ": " + list.get(index));
+                         }
+
+  } 
+ 
+//Calculate Volume 
+  public static double calculateVolume(Cylinder cylinder)
+  {
+     return (cylinder.getHeight()*((3.14*(cylinder.getRadius()*cylinder.getRadius()))));     
+  }
+
+//Calculate Surface Area  
+  public static double calculateSurfaceArea(Cylinder cylinder)
+  {
+     return ((2 * (3.14*(cylinder.getRadius()*cylinder.getRadius())) + (cylinder.getHeight()*(2*3.14*cylinder.getRadius()))));     
+  }
+     
+}
