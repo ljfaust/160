@@ -1,0 +1,107 @@
+//class Clock
+
+public class Clock
+{
+    private int hr;  //store hours
+    private int min; //store minutes
+    private int sec; //store seconds
+
+    //Default constructor
+    //Postcondition: hr = 0; min = 0; sec = 0
+    public Clock()
+    {
+       setTime(0, 0, 0);
+    }
+
+    //Constructor with parameters, to set the time
+    //The time is set according to the parameters
+    //Postcondition: hr = hours; min = minutes; sec = seconds
+    public Clock(int hours, int minutes, int seconds)
+    {
+     setTime(hours, minutes, seconds);
+    }
+
+    //Method to set the time
+    //The time is set according to the parameters
+    //Postcondition: hr = hours; min = minutes; sec = seconds
+    public void setTime(int hours, int minutes, int seconds)
+    {
+       if (0 <= hours && hours < 24)
+         hr = hours;
+       else
+         hr = 0;
+
+       if (0 <= minutes && minutes < 60)
+         min = minutes;
+       else
+         min = 0;
+
+       if (0 <= seconds && seconds < 60)
+         sec = seconds;
+       else
+         sec = 0;
+    }
+
+    //Method to return the hours
+    //Postcondition: The value of hr is returned.
+    public int getHours()
+    {
+     return hr;
+    }
+
+    //Method to return the minutes
+    //Postcondition: The value of min is returned.
+    public int getMinutes()
+    {
+     return min;
+    }
+
+    //Method to return the seconds
+    //Postcondition: The value of sec is returned.
+    public int getSeconds()
+    {
+        return sec;
+    }
+
+    //Method to compare the two times
+    //Postcondition: Returns true if this time is equal to
+    //               otherClock; otherwise returns false
+    public boolean equals(Clock otherClock)
+    {
+        return (hr == otherClock.hr
+              && min == otherClock.min
+                && sec == otherClock.sec);
+    }
+
+    //Method to copy the time
+    //Postcondition: The instance variables of otherClock are
+    //               copied into the corresponding data members
+    //               of this time.
+    //               hr = otherClock.hr; min = otherClock.min;
+    //               sec = otherClock.sec.
+    public void makeCopy(Clock otherClock)
+    {
+        hr = otherClock.hr;
+        min = otherClock.min;
+        sec = otherClock.sec;
+    }
+
+    public String toString()
+    {
+        String str = "";
+
+        if (hr < 10)
+          str = "0";
+        str = str + hr + ":";
+
+        if (min < 10)
+          str = str + "0" ;
+        str = str + min + ":";
+
+        if (sec < 10)
+          str = str + "0";
+        str = str + sec;
+
+        return str;
+    }
+}
