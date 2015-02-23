@@ -1,0 +1,84 @@
+public class Fraction {
+  
+  private int numerator, denominator;  
+  
+//Default Constructor
+  public Fraction(){
+    numerator = 0;
+    denominator = 0;
+  }
+//Constructor with parameters  
+  public Fraction (int numerator, int denominator){
+    this.numerator = numerator;
+    this.denominator = denominator;
+  }
+  
+//numerator    
+  public void setNumerator(int numerator){
+    this.numerator = numerator;
+  }
+  public int getNumerator(){
+    return numerator;
+  }
+  
+//denominator  
+  public void setDenominator(int denominator) {
+    this.denominator = denominator;
+  } 
+  public int getDenominator() {
+   return denominator;
+  }
+  
+//Plus method
+ public Fraction plus(Fraction otherNum){
+
+   Fraction temp = new Fraction(numerator, denominator);  
+   
+   temp.setNumerator((temp.getNumerator() * otherNum.getDenominator()) + (temp.getDenominator() * otherNum.getNumerator()));
+   temp.setDenominator(temp.getDenominator() * otherNum.getDenominator());
+   
+   return temp;
+ } 
+ 
+//Minus method
+ public Fraction minus(Fraction otherNum){
+
+   Fraction temp = new Fraction(numerator, denominator);  
+   
+   temp.setNumerator((temp.getNumerator() * otherNum.getDenominator()) - (temp.getDenominator() * otherNum.getNumerator()));
+   temp.setDenominator(temp.getDenominator() * otherNum.getDenominator());
+   
+   return temp;
+ } 
+
+//Multiply method   
+ public Fraction multiply(Fraction otherNum){
+
+   Fraction temp = new Fraction(numerator, denominator);  
+   
+   temp.setNumerator(temp.getNumerator() * otherNum.getNumerator());
+   temp.setDenominator(temp.getDenominator() * otherNum.getDenominator());
+   
+   return temp;  
+ } 
+   
+//Divide method   
+ public Fraction divide(Fraction otherNum){
+
+   Fraction temp = new Fraction(numerator, denominator);  
+   
+   temp.setNumerator(temp.getNumerator() * otherNum.getDenominator());
+   temp.setDenominator(temp.getDenominator() * otherNum.getNumerator());
+   
+      if(otherNum.getNumerator() == 0 || otherNum.getDenominator() == 0)
+        System.out.println("The following fraction is irrational, cannot divide by zero");
+   
+   return temp; 
+ } 
+   
+//toString 
+ public String toString() {
+   return (numerator + " / " + denominator);
+ }
+ 
+}
