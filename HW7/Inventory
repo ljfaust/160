@@ -1,0 +1,86 @@
+public class Inventory {
+  
+  private int itemID, pOrdered, pInStore, pSold;   
+  private double manufPrice, sellingPrice;
+  private String itemName;
+  
+//Default Constructor
+  public Inventory(){
+    itemID = 0;
+    itemName = " ";
+    pOrdered = 0;
+    pInStore = 0;
+    pSold = 0;
+    manufPrice = 0;
+    sellingPrice = 0;
+  }
+  
+//Constructor with parameters  
+  public Inventory (int itemID, String itemName, int pOrdered, int pInStore, int pSold, double manufPrice, double sellingPrice){
+    this.itemID = itemID;
+    this.itemName = itemName;
+    this.pOrdered = pOrdered;
+    this.pInStore = pInStore;
+    this.pSold = pSold;
+    this.manufPrice = manufPrice;
+    this.sellingPrice = sellingPrice;
+  }
+  
+//itemID    
+  public void setItemID(int itemID){
+    this.itemID = itemID;
+  }
+  public int getItemID(){
+    return itemID;
+  }
+  
+//itemName  
+  public void setItemName(String itemName) {
+    this.itemName = itemName;
+  } 
+  public String getItemName() {
+   return itemName;
+  }  
+  
+//pOrdered   
+  public void setPOrdered(int pOrdered){
+    this.pOrdered = pOrdered;
+  }
+  public int getPOrdered(){
+    return pOrdered;
+  }
+  
+//pInStore
+  public void setPInStore(int pInStore) {
+    this.pInStore = pInStore;
+  } 
+  public int getPInStore() {
+   return pInStore;
+  }  
+  
+//pSold
+  public void setPSold(int pSold){
+    this.pSold = pSold;
+  }
+  public int getPSold(){
+    return pSold;
+  }
+  
+//manufPrice
+  public void setManufPrice(double manufPrice) {
+    this.manufPrice = manufPrice;
+  } 
+  public double getManufPrice() {
+   return manufPrice;
+  }   
+  
+ //sellingPrice
+  public void setSellingPrice(double sellingPrice) {
+    this.sellingPrice = sellingPrice;
+  } 
+  public double getSellingPrice() {
+   return sellingPrice;
+  }   
+  
+}
+  
