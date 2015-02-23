@@ -1,0 +1,102 @@
+public class roman {
+  
+  private String numbers;  
+  
+//Default Constructor
+  public roman(){
+    numbers = " ";
+  }
+//Constructor with parameters  
+  public roman (String numbers){
+    this.numbers = numbers;
+  }
+  
+//Numbers    
+  public void setNumbers(String numbers){
+    this.numbers = numbers;
+  }
+  public String getNumbers(){
+    return numbers;
+  }
+  
+//Read
+  public int read(roman One)
+    {
+     int total = 0;
+     int newDecimal = 0;
+     int decimal = 0;
+     int decimal2 = 0;
+     int start = 0;
+     int start2 = 0;
+     int limit = 0;
+     int counter = 0;
+
+                                     
+     limit = getNumbers().length();
+     
+    while (counter < limit)                                  
+     { 
+       decimal = convert(getNumbers().charAt(start));
+       decimal2 = convert(getNumbers().charAt(start2 + 1));     
+         if(decimal >= decimal2)
+         {
+           total += decimal; 
+           start++;
+           counter++;
+         }
+         else
+         {  
+           newDecimal = decimal2 - decimal;
+           total += newDecimal;
+           start++;
+           counter++;
+         } 
+   
+     }
+    return total;  
+  }
+  
+//Convert
+  public int convert(char x)
+  {
+     switch (x)
+    {
+     case 'M':
+      x = 1000;
+      break;
+      
+     case 'D':
+      x = 500;
+      break;
+      
+     case 'C':
+     x = 100;
+      break;
+      
+     case 'L':
+     x = 50;
+      break;
+      
+     case 'X':
+      x = 10;
+      break;
+      
+     case 'V':
+      x = 5;
+      break;
+      
+     case 'I':
+       x = 1;
+      break; 
+      
+
+     } 
+    return x; 
+  }
+     
+//toString
+ public String toString() {
+   return (numbers);
+ } 
+
+}
