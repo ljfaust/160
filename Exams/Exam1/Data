@@ -1,0 +1,54 @@
+/*This program reads in a series of numbers from a file
+ * then organizes them into 10 numbers per line
+ * finally, it returns the sum of the numbers
+ * and the average*/
+
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+
+public class data
+{
+//limit of numbers per line  
+  static int limit = 10;
+  
+  public static void main (String[] args) throws FileNotFoundException
+    {
+
+        double sum = 0;
+        double number;
+        int count = 0; 
+        int count2 = 0;
+
+//scanner reads in the input.txt and prints the new file to output.txt
+        Scanner inFile = new Scanner(new FileReader("input.txt")); 
+        PrintWriter outFile = new PrintWriter("output.txt"); 
+// loop reads in information on the input file       
+        while (inFile.hasNext())
+        {  
+          number = inFile.nextDouble();
+          sum += number;
+          count++;
+          count2++;
+          outFile.print(number + " ");
+            if (count2 >= limit)
+            { 
+             outFile.println();
+// when the counter reaches 10, it is reset to the limit             
+             count2 = count2 - limit;
+            }
+          
+        } 
+
+        outFile.println();
+        outFile.println();
+        outFile.println("There are " + count + " numbers");   
+        outFile.printf("The sum of numbers = %5.2f %n", sum);
+        outFile.printf("The average = %5.2f ", sum/count);
+      
+        
+        inFile.close();
+        outFile.close();                          
+   }
+}
+
