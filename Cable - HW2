@@ -1,0 +1,61 @@
+import java.util.*;
+
+public class cable {
+ 
+ static Scanner console = new Scanner(System.in);
+
+ 
+ public static void main(String[] args)
+   
+ {
+  double rBillProcessing = 4.95;
+  double rBasicService = 20.50;
+  double rPremiumChannels = 7.50;
+  int bBillProcessing = 15;
+  int bBasicService = 75;
+  int bBasicServicePlus = 5;
+  int bPremiumChannels = 50;
+  int maxBasicConnections = 10; 
+  int accountNumber, basicServiceConnections, premiumChannels;
+  double amountDue = 0;
+  char customerType, business, resident;
+  char businessType = 'B';
+  char residentType = 'R';
+
+  System.out.println("Enter the account number: ");
+  accountNumber = console.nextInt();
+  
+  System.out.println("Enter the custome type, R (residential) or B (business): ");
+  customerType = console.next().charAt(0);
+//Business  
+  if (customerType == businessType)                          
+  {  System.out.println("Enter the number of basic service connections: ");
+     basicServiceConnections = console.nextInt();
+            
+     System.out.println("Enter the number of premium channels: ");
+     premiumChannels = console.nextInt();
+     
+     amountDue = bBillProcessing + bBasicService;
+  
+     if (basicServiceConnections > maxBasicConnections)
+     {  amountDue = amountDue + ((basicServiceConnections - maxBasicConnections) * bBasicServicePlus);
+       
+     amountDue = (amountDue + (bPremiumChannels * premiumChannels)); 
+     }
+  }
+//Resident          
+   if (customerType == residentType)
+   {  System.out.println("Enter the number of premium channels: ");
+      premiumChannels = console.nextInt();
+     
+      amountDue = rBillProcessing + rBasicService;
+     
+      amountDue = (amountDue + (rPremiumChannels * premiumChannels));
+   }
+   
+  System.out.println("Account number :" + accountNumber);
+  System.out.println("Amount due : $" + amountDue); 
+   
+    }
+
+}
