@@ -1,0 +1,76 @@
+/*This program asks the user if they would like to play a game,
+ * if the user agrees, the program reads in a string from the user
+ * and informs the user if it is a palindrome*/
+
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+
+public class palindrome
+{
+ static Scanner console = new Scanner(System.in);
+  
+  public static void main (String[] args) 
+ {
+  char answer;
+  String word;
+  boolean check;
+     
+   do
+   {
+     System.out.println("Do you want to play the Palindrome game? (Y/N):");
+     answer = console.next().charAt(0);      
+     
+     if(answer == 'Y' || answer == 'y')
+      {
+       System.out.println("Enter a string:");
+       word = console.next();  
+       check = isPalindrome(word);
+        if(check == false)
+         {
+          System.out.println(word + " is a palindrome");
+
+         } 
+        else
+          System.out.println(word + " is not a palindrome");
+          System.out.println();
+       }
+     
+     else
+       System.out.println("Bye.");
+ 
+    }while (answer == 'Y' || answer == 'y');
+    
+ }
+//This method tells if the string is a palindrome  
+  public static boolean isPalindrome(String word)
+    {
+     int end;
+     int start = 0;
+     int limit;
+     int counter = 0;
+     boolean done;
+     char forward, backward;
+     
+     done = false;                                  
+                  
+     end = word.length();  
+     limit = word.length();
+     
+    while (counter < limit)                                  
+     { 
+       forward = word.charAt(start);
+       backward = word.charAt(end-1);
+         if(forward == backward)
+         {
+           start++;
+           end--;
+           counter++;
+         }  
+         else
+           return true;
+     }
+    return false;
+      
+}
+}
