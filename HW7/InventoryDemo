@@ -1,0 +1,169 @@
+import java.io.*;
+import java.util.*;
+
+public class InventoryDemo
+{
+  static Scanner console = new Scanner(System.in);
+  static final int N = 4;
+   
+  public static void main(String[] args) throws FileNotFoundException
+  {
+    int answer;
+    String item;
+    
+    Scanner inFile = new Scanner(new FileReader("data.txt"));  
+                  
+     ArrayList<Inventory> inventory = new ArrayList<Inventory>(N); 
+     
+     fillReport(inventory, inFile);
+     
+   do
+   {
+     System.out.println("Welcome to the Friendly Hardware Store!");
+     System.out.println("Choose among the following options.");
+     System.out.println("1: To see if an item is in the store.");
+     System.out.println("2: To buy an item.");
+     System.out.println("3: To check the price of an item.");
+     System.out.println("4: To print the inventory.");
+     System.out.println("9: To end the program."); 
+     
+     answer = console.nextInt();  
+     
+     switch(answer)
+          {
+            case 1: 
+               checkItem(inventory);
+             break;
+            case 2: 
+               buyItem(inventory);
+             break;
+            case 3: 
+               checkPrice(inventory);
+             break; 
+            case 4: 
+               printReport(inventory);
+             break;            
+          }  
+ 
+    }while (answer != 9);     
+  
+    inFile.close();   
+  }
+
+//FILL ARRAY 
+ public static void fillReport(ArrayList<Inventory> list, Scanner inFile) 
+  {
+      int index;
+      int itemID, pOrdered, pInStore, pSold;
+      double manufPrice, sellingPrice;  
+      String itemName;     
+    
+      for (index = 0; index < N; index++)
+      { 
+        itemID = inFile.nextInt();        
+        itemName = inFile.next() + " " + inFile.next();
+        pOrdered = inFile.nextInt();  
+        pInStore = pOrdered; 
+        pSold = 0;
+        manufPrice = inFile.nextDouble(); 
+        sellingPrice = inFile.nextDouble(); 
+        
+       list.add(index, new Inventory(itemID, itemName, pOrdered, pInStore, pSold, manufPrice, sellingPrice));
+      }
+  }
+ 
+//CHECK ITEM 
+  public static void checkItem(ArrayList<Inventory> list) 
+  {
+    String y;
+    int index = 0;
+    
+    System.out.println("Enter the name of the item: ");
+    y = new String(console.next() + " " + console.next());
+
+    for (index = 0; index < N; index++)
+   {  
+    if (list.get(index).getItemName().compareTo(y) == 0 && list.get(index).getPInStore() > 0)
+     System.out.println(y + " is in the store");
+    else if (list.get(index).getPInStore() < 1)
+     System.out.println(y + " is not in the store");
+   }  
+  }
+  
+//BUY ITEM  
+  public static void buyItem(ArrayList<Inventory> list) 
+  {
+    String y;
+    int index = 0, number = 0; 
+    double amountDue = 0;
+    
+    System.out.println("Enter the name of the item: ");
+    y = new String(console.next() + " " + console.next());
+    
+   for (index = 0; index < N; index++)
+   {  
+    if (list.get(index).getItemName().compareTo(y) == 0)
+    { 
+      System.out.println("Enter the number of pieces: ");
+      number = console.nextInt();
+      amountDue = number * list.get(index).getSellingPrice();  
+      System.out.printf("Amount Due = $%.2f%n", amountDue);  
+      
+     list.get(index).setPInStore(list.get(index).getPInStore() - number);
+     list.get(index).setPSold(list.get(index).getPSold() + number);                     
+                         
+    }                     
+   }
+  }
+ 
+//CHECK PRICE  
+  public static void checkPrice(ArrayList<Inventory> list) 
+  {
+    String y;
+    int index = 0;
+    
+    System.out.println("Enter the name of the item: ");
+    y = new String(console.next() + " " + console.next());
+    
+    for (index = 0; index < N; index++)
+   {  
+    if (list.get(index).getItemName().compareTo(y) == 0)
+    { 
+      System.out.println("The price of " + y + " is " + list.get(index).getSellingPrice());
+    }  
+  }
+   
+  }
+  
+//PRINT REPORT    
+ public static void printReport(ArrayList<Inventory> list)
+  {
+     int index;
+     int sum = 0;
+     double sum2 = 0;
+      System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s %-15s", "itemID", "itemName", "pOrdered", "pInStore", "pSold", "manufPrice", "sellingPrice");
+      System.out.println();
+        
+     for (index = 0; index < N; index++)
+       
+
+      {System.out.printf("%-15s %-15s %-15s %-15s %-15s", list.get(index).getItemID(), list.get(index).getItemName(), list.get(index).getPOrdered(), list.get(index).getPInStore(), list.get(index).getPSold());
+       System.out.printf("%.2f\t", list.get(index).getManufPrice());   
+       System.out.printf("%.2f %n", list.get(index).getSellingPrice()); 
+      }
+           
+      
+     for (index = 0; index < N; index++)
+      sum = sum + (list.get(index).getPInStore());
+     
+     for (index = 0; index < N; index++)
+      sum2 = sum2 + ((list.get(index).getPInStore())*(list.get(index).getSellingPrice()));     
+      
+      System.out.println();
+      System.out.printf("Total Inventory: $%.2f%n", sum2);  
+      System.out.println("Total number of items in the store: " + sum);
+      System.out.println();
+
+  } 
+
+}
