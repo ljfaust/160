@@ -1,0 +1,44 @@
+/*This program reads an undefined series of 
+ * numbers and then returns the sum of even and 
+ * odd numbers*/
+import java.util.*;
+
+public class evensOdds
+{
+    static Scanner console = new Scanner(System.in);
+
+
+    public static void main (String[] args)
+    {   
+        int number;     
+        int odds = 0;  
+        int evens = 0;
+        int evenSum = 0;
+        int oddSum = 0;
+
+        System.out.println("Please enter integers, press 'ctrl + d' when finished");  
+
+
+      
+      while (console.hasNext())
+        {
+            number = console.nextInt();             
+                                                   
+            switch (number % 2)
+            {
+            case 0: 
+              evenSum += number;
+                    if (number == 0)
+                    break;
+            break;        
+            case 1:
+            case -1: oddSum += number;
+            }
+
+        }
+
+        System.out.println("The sum of even numbers = " + evenSum); 
+        System.out.println("The sum of odd numbers = " + oddSum);              
+  
+    }
+}
