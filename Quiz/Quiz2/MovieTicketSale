@@ -1,0 +1,65 @@
+/*This program calculates the gross earnings from the movie theater, 
+ *the amount to be donated, and finally the net earnings*/ 
+
+import java.io.*;
+import java.util.*;
+import javax.swing.JOptionPane;
+
+public class MovieTicketSale
+{  
+  
+  public static void main (String[] args) 
+    {
+      
+        double adultTP, childTP;
+        double adultTS, childTS;
+        double amountDonated;
+        double gross;
+        String movieName;
+        String outputStr;            
+        
+     outputStr =
+         JOptionPane.showInputDialog("Enter the movie name: "); 
+
+     movieName = String.format(outputStr);              
+ 
+     outputStr =
+         JOptionPane.showInputDialog("Enter the price of an adult ticket: "); 
+
+     adultTP = Double.parseDouble(outputStr); 
+     
+     outputStr =
+         JOptionPane.showInputDialog("Enter the price of a child ticket: "); 
+
+     childTP = Double.parseDouble(outputStr);   
+     
+     outputStr =
+         JOptionPane.showInputDialog("Enter the number of adult tickets sold: "); 
+
+     adultTS = Double.parseDouble(outputStr);   
+     
+     outputStr =
+         JOptionPane.showInputDialog("Enter the number of child tickets sold: "); 
+
+     childTS = Double.parseDouble(outputStr); 
+     
+     outputStr =
+         JOptionPane.showInputDialog("Enter the percentage of the donation: "); 
+
+     amountDonated = Double.parseDouble(outputStr);   
+     
+     
+     outputStr = "Movie Name: " + movieName + 
+                 "Number of Tickets Sold: " + String.format("%5.2f", (adultTS+childTS)) + "\n" +
+                 "Gross Amount: " + String.format("%5.2f", ((adultTP*adultTS) + (childTP*childTS))) + "\n" +
+                 "Percentage of the Gross Amount Donated: " + String.format("%5.2f", (amountDonated)) + "\n" +
+                 "Amount Doanted: " + String.format("%5.2f", (((adultTP*adultTS) + (childTP*childTS))/amountDonated) + "\n" +
+                 "Net Sale: " + String.format("%5.2f", (((adultTP*adultTS) + (childTP*childTS))-amountDonated)));                                  
+
+     JOptionPane.showMessageDialog(null, outputStr, "Theater Sales Data",
+                        JOptionPane.INFORMATION_MESSAGE);   
+
+     System.exit(0);                       
+   }
+}
+
