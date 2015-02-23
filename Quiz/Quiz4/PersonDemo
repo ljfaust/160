@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class PersonDemo{
+  
+  static Scanner console = new Scanner(System.in);
+  
+  public static void main(String[] args)
+  {
+    
+    Person One = new Person("Mary", "Regan");
+    
+    System.out.println("The first person's name set by default is Mary Regan");
+    System.out.println("Enter a second person's name in the order of first name and last name: ");   
+    Person Two = new Person(console.next(), console.next());
+
+
+    One.firstNameCheck(Two);
+    One.lastNameCheck(Two);
+    One.equals(Two);
+    One.makeCopy(Two);    
+
+  }
+
+} 
