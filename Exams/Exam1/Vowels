@@ -1,0 +1,46 @@
+import java.util.*;
+import java.lang.*;
+
+public class vowels {
+ 
+ static Scanner console = new Scanner(System.in);
+
+ 
+ public static void main(String[] args)
+   
+ {
+  int vowelCount = 0;
+  int counter = 0;
+  int length;
+  int limit = 0;
+  String letters;
+  char character;
+ 
+  System.out.println("Enter characters in a line: ");
+  
+  letters = console.next();
+  limit = limit + letters.length();
+  
+  while (counter <= limit)
+  {     
+    character = letters.charAt(counter);
+    
+    switch (character)
+    {
+      case 'a': case 'A': case 'e': case 'E': case 'i': case 'I': case 'o': case 'O': case 'u': case 'U':
+      vowelCount++;
+      counter++; 
+       break;
+      
+      default:
+      counter++;
+       break; 
+    }
+  }  
+  
+    System.out.println("There were " + vowelCount + " vowel in the input line");
+  
+ }
+}
+
+
