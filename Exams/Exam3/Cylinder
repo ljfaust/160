@@ -1,0 +1,58 @@
+public class Cylinder {
+  
+  private double xvalue, yvalue, radius, height;  
+  
+//Default Constructor
+  public Cylinder(){
+    xvalue = 0;
+    yvalue = 0;
+    radius = 0;
+    height = 0;
+  }
+//Constructor with parameters  
+  public Cylinder (double xvalue, double yvalue, double radius, double height){
+    this.xvalue = xvalue;
+    this.yvalue = yvalue;
+    this.radius = radius;
+    this.height = height;
+  }
+  
+//XValue
+  public void setXValue(double xvalue){
+    this.xvalue = xvalue;
+  }
+  public double getXValue(){
+    return xvalue;
+  }
+  
+//YValue
+  public void setYValue(double yvalue){
+    this.yvalue = yvalue;
+  }
+  public double getYValue(){
+    return yvalue;
+  }
+  
+//Radius
+  public void setRadius(double radius){
+    this.radius = radius;
+  }
+  public double getRadius(){
+    return radius;
+  }
+  
+//Height
+  public void setHeight(double height){
+    this.height = height;
+  }
+  public double getHeight(){
+    return height;
+  }
+    
+ 
+ //toString
+ public String toString() {
+   return ("<([" + xvalue + ", " + yvalue + "]," + radius + "), " + height + ">");
+ }
+ 
+}
