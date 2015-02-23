@@ -1,0 +1,36 @@
+/*This program takes a number of seconds entered by the user and organizes them into hours, minutes and seconds*/
+
+//This import is necessary to run the scanner//
+import java.util.*;
+
+public class quiz{
+  
+//This line allows for user input later in the program//
+  static Scanner console = new Scanner(System.in);
+//establishes amount of seconds in a hour and a minute//  
+  static final int HOUR = 3600;
+  static final int MINUTE = 60;
+ 
+  public static void main(String args[])
+  {  
+//Lists variables to be used in the base of the code//
+    int seconds;
+    int hours;
+    int minutes;
+
+//This line tells the user what to input//
+    System.out.print("Please enter the number of seconds");
+    seconds = console.nextInt();
+//sets up the amount of hours to be printed by taking the total number of seconds and dividing it by 3600//    
+    hours = seconds / HOUR;
+//hours are then subtracted from the seconds using the modulus operator//    
+    seconds = seconds % HOUR;
+//sets up the amount of minutes to be printed by taking the total number of seconds and dividing it by 60//    
+    minutes = seconds / MINUTE;
+//minutes are then subtracted from the seconds using the modulus operator//          
+    seconds = seconds % MINUTE;
+//the remaining seconds are then printed along with the hours and minutes//        
+    System.out.println(hours + ":" + minutes + ":" + seconds + ".");
+                                    
+  }
+}
