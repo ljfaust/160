@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class gcd {
+ 
+ static Scanner console = new Scanner(System.in);
+
+ public static void main(String[] args)
+   
+ {
+  int m, n, remainder = 0 ;
+
+     System.out.println("Enter the first integer: ");
+     m = console.nextInt();
+  
+     System.out.println("Enter the second integer");
+     n = console.nextInt();
+  
+       if( m = 0)
+         System.out.print(m);
+       else if( m > n)
+       {
+         m%n = remainder;
+         System.out.println(remainder);
+       }
+       else 
+       {
+         n%m = remainder;
+         System.out.println(remainder);
+       }  
+       
+        /* remainder = m%n;       
+       }
+          System.out.println(remainder);*/
+       
+          
+        
+
+  
+  
+  
+    }
+
+}
