@@ -1,0 +1,132 @@
+import java.util.*;
+
+public class ArrayListOfClockObjects
+{
+  static Scanner console = new Scanner(System.in);
+  static final int N = 3;
+  static final int minPerHour = 60;
+  static final int secPerMin = 60;
+  
+  public static void main(String[] args)
+  {
+     ArrayList<Clock> arrivalTimeEmp = new ArrayList<Clock>(N);  
+     int hour, min, sec;
+
+     fillArray(arrivalTimeEmp);
+     
+      
+     printArray(arrivalTimeEmp);
+     
+     System.out.println("The latest arrived employee is #" 
+                          + (latestArrivedEmployee(arrivalTimeEmp)+1) + " employee");
+     
+     System.out.println("Enter hour, minute and second to search for all employees who arrive before this time: ");
+     hour = console.nextInt();
+     min = console.nextInt();
+     sec = console.nextInt();
+     searchByTime(arrivalTimeEmp, hour, min, sec);
+     
+  }
+  
+
+  public static void fillArray(ArrayList<Clock> list) 
+  {
+      int index;
+      int hour, min, sec;   
+    
+      for (index = 0; index < N; index++)
+      {
+        System.out.println("Enter arrival time for #" 
+                             + (index + 1) + " employee: ");  
+        
+        System.out.println("hours:");
+        hour = checkException(hour);
+        System.out.println("minutes:");
+        min = checkException(min);
+        System.out.println("seconds:");
+        sec = checkException(sec);
+        
+        list.add(index, new Clock(hour, min, sec));
+      }
+  }
+  
+  public static int checkException(int x)
+  {    
+   boolean done;
+   
+    do{     
+    try
+    {
+      x = console.nextInt();
+      if(x < 0)
+        System.out.println("hours cannot be negative");
+      done = false;
+    }
+    catch (InputMismatchException imeRef)
+    {
+      System.out.println(imeRef.toString());
+      console.nextLine();
+      done = true;
+    }
+   }while(done == true || x<0); 
+        
+      return x;  
+  }     
+    
+    
+  public static void printArray(ArrayList<Clock> list)
+  {
+     int index;
+        
+     for (index = 0; index < list.size(); index++)
+       System.out.println("Employee #" +  (index + 1)
+                             + " arrival time: "
+                             + (Clock)list.get(index));  
+  }
+  
+  public static int latestArrivedEmployee(ArrayList<Clock> list)
+  {
+    int index, count=-1;
+    int minSec = 999, totalSec;
+    
+    for (index = 0; index < list.size(); index++)  
+    {
+      totalSec = calculateTotalSeconds((Clock)list.get(index));
+      
+      if (totalSec > minSec)
+      {
+        minSec = totalSec;
+        count = index;
+      }
+    }    
+    return count;
+  }
+
+public static void searchByTime(ArrayList<Clock> list, int hour, int min, int sec)
+  {
+    int index;
+    boolean flag = false;
+    
+    Clock time = new Clock(hour, min, sec);
+    
+    for (index = 0; index < list.size(); index++)  
+    {
+      if (calculateTotalSeconds((Clock)list.get(index)) < calculateTotalSeconds((Clock)time)) 
+      {
+        System.out.println("Employee #" + (index+1) + " arrived before " + time);
+        flag = true;
+      }
+    }
+    
+    if (!flag)
+      System.out.println("Nobody arrived at " + time);
+  }
+
+
+  public static int calculateTotalSeconds(Clock time)
+  {
+     return (time.getHours() * minPerHour * secPerMin
+        + time.getMinutes() * secPerMin
+        + time.getSeconds());     
+  }
+}
